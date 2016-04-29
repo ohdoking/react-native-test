@@ -3,10 +3,13 @@ var React = require('react-native');
 var {
 	Navigator,
 	StyleSheet,
+	ToolbarAndroid,
+	View
 } = React;
 
-var Login = require('./components/login');
-var Channels = require('./components/channels');
+var Login = require('./pages/login');
+var Channels = require('./pages/channels');
+
 
 var ROUTES = {
 	login: Login,
@@ -19,7 +22,7 @@ var Main = React.createClass({
 		return <Component route={route} navigator={navigator} />;
 	},
 	render: function(){
-		return(
+		return(         
 			<Navigator
 				style={styles.container}
 				initialRoute={ {name: 'login'} }
@@ -37,7 +40,7 @@ var Main = React.createClass({
 var styles = StyleSheet.create({
 	container: {
 		flex: 1
-	}
+	},	
 });
 
 module.exports = Main;

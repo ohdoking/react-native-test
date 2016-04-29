@@ -8,10 +8,29 @@ var {
   Image,
   ListView,
   TouchableHighlight,
-  ToastAndroid
+  ToastAndroid,
+  ToolbarAndroid,
+  UIExplorerPage,
+  RefreshControl
 } = React;
 
+var UIExplorerPage = require('./../components/UIExplorerPage');
+
 var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+
+
+var MOCKED_MOVIES_DATA = [
+  {
+    title: 'Title',
+    year: '2015',
+    posters:
+    {
+      thumbnail: 'http://i.imgur.com/UePbdph.jpg'
+    }
+  },
+];
+
+
 
 var Channels = React.createClass({
   getInitialState: function() {
@@ -20,6 +39,7 @@ var Channels = React.createClass({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
+      refreshing: false,
     };
 
     return this.state;
@@ -68,17 +88,47 @@ var Channels = React.createClass({
       </View>
     );
   },
+  onRefresh: function() {
+    this.setState({refreshing: true});
+    fetch(REQUEST_URL)
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          loaded: true,
+        });
+      })
+      .then(() => {
+      this.setState({refreshing: false});
+    })
+    .done();
+  },
+
   render: function() {
 
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
 
-    return (
-      <ListView
-	    dataSource={this.state.dataSource}
-	    renderRow={this.renderMovie}
-	    style={styles.listView}/>
+    return (      
+      <UIExplorerPage
+        title={this.props.navigator ? null : '<ListView>'}
+        noSpacer={true}
+        noScroll={true}>
+          <ToolbarAndroid style={styles.toolbar}
+            title={'Ohdoking ReactNative Test'}
+            titleColor={'#FFFFFF'}/>
+          <ListView
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.onRefresh.bind(this)}
+              />
+            }
+            dataSource={this.state.dataSource}
+            renderRow={this.renderMovie}
+            style={styles.listView}/>
+      </UIExplorerPage>
     );
   }
 });
@@ -107,8 +157,12 @@ var styles = StyleSheet.create({
     textAlign: 'center',
   },
   listView: {
-    paddingTop: 20,
+    /*paddingTop: 20,*/
     backgroundColor: '#F5FCFF',
+  },
+  toolbar: {
+    height: 56,
+    backgroundColor: '#FF6600'
   },
 });
 
