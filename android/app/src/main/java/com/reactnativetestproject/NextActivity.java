@@ -7,7 +7,7 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends ReactActivity {
+public class NextActivity extends ReactActivity {
 
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -15,7 +15,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "OhdokingChat";
+        return "ReactNativeTestProject";
     }
 
     /**
