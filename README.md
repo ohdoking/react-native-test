@@ -37,7 +37,6 @@ nodejs가 버전 4.0 이상이 설치되어 있어야 한다.
 
 ##React-Native 에서 사용하는 JS 문법
 
-```
 ####ES5
 ```
 Reserved Words: promise.catch(function() { });

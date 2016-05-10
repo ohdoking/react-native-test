@@ -11,19 +11,23 @@ var Detail = React.createClass({
   getInitialState: function() {
     console.log(this.props.movie);
     this.state = {};
-
     return this.state;
   },
+
+  /*
+    this.props.navigator.pop()를 실행시키면 이전 화면으로 돌아간다.
+   */
   onBackPress: function() {
     this.props.navigator.pop();
   },
 
-  componentDidMount: function() {
-    /*this.fetchData();*/
+  /*
+    navigator 로 보낸 movie 데이터를 아래와 같이 받는다.
+    this.props.movie.title
 
-  },  
-
-
+    props는 부모에게서 받아오는 값
+    state는 현재 내가 가지고 있는 값
+   */
   render: function() {
 
     console.log(this.props,"!!!");
