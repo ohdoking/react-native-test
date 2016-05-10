@@ -33,6 +33,46 @@ nodejs가 버전 4.0 이상이 설치되어 있어야 한다.
 		react-native run-android
 ```
 
+
+
+##React-Native 에서 사용하는 JS 문법
+
+```
+####ES5
+```
+Reserved Words: promise.catch(function() { });
+```
+
+####ES6
+```
+Arrow functions: <C onPress={() => this.setState({pressed: true})}
+Block scoping: let greeting = 'hi';
+Call spread: Math.max(...array);
+Classes: class C extends React.Component { render() { return <View />; } }
+Constants: const answer = 42;
+Destructuring: var {isActive, style} = this.props;
+for...of: for (var num of [1, 2, 3]) {}
+Modules: import React, { Component } from 'react-native';
+Computed Properties: var key = 'abc'; var obj = {[key]: 10};
+Object Consise Method: var obj = { method() { return 10; } };
+Object Short Notation: var name = 'vjeux'; var obj = { name };
+Rest Params: function(type, ...args) { }
+Template Literals: var who = 'world'; var str = `Hello ${who}`;
+```
+
+####ES7
+```
+Object Spread: var extended = { ...obj, a: 10 };
+Function Trailing Comma: function f(a, b, c,) { }
+Async Functions: async function doStuffAsync() { const foo = await doOtherStuffAsync(); };
+```
+
+####Specific
+```
+JSX: <View style={{color: 'red'}} />
+Flow: function foo(x: ?number): string {}
+```
+
 ####참고한 사이트 및 프로젝트
 
 * http://blog.sendbird.com/ko/tutorialreact-native%EC%97%90%EC%84%9C-%EC%B1%84%ED%8C%85-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0/
